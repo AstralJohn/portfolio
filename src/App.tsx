@@ -1,6 +1,11 @@
 import React from 'react'
-function App () {
-  return <div className="App">Hello World</div>
+import Hero from 'views/Hero'
+const App: React.FC = () => {
+  return (
+    <>
+      <Hero />
+    </>
+  )
 }
 
 export default App
