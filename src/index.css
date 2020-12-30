@@ -9,4 +9,7 @@
   p {
     font-family: 'Open Sans', sans-serif;
   }
+  .btn {
+    min-width: 190px;
+  }
 }
