@@ -14,6 +14,18 @@ module.exports = {
       orange: {
         DEFAULT: '#FF7A49',
         dark: '#B3502D'
+      },
+      red: {
+        DEFAULT: '#F3605C',
+        border: '#D64542'
+      },
+      yellow: {
+        DEFAULT: '#F8BE39',
+        border: '#D89F2C'
+      },
+      green: {
+        DEFAULT: '#50C845',
+        border: '#40AB2F'
       }
     },
     fontFamily: {
@@ -28,7 +40,13 @@ module.exports = {
       'xl': '1280px',
       '2xl': '1536px'
     },
-    extend: {},
+    extend: {
+      spacing: {
+        '72': '18rem',
+        '84': '22.5rem',
+        '96': '24rem'
+      }
+    },
   },
   variants: {
     extend: {},
