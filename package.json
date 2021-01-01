@@ -9,6 +9,7 @@
     "@types/react": "^16.9.53",
     "@types/react-dom": "^16.9.8",
     "autoprefixer": "^9.8.6",
+    "classnames": "^2.2.6",
     "postcss": "^7.0.35",
     "prop-types": "^15.7.2",
     "react": "^17.0.1",
@@ -47,6 +48,7 @@
     "singleQuote": true
   },
   "devDependencies": {
+    "@types/classnames": "^2.2.11",
     "@typescript-eslint/eslint-plugin": "^4.11.1",
     "@typescript-eslint/parser": "^4.11.1",
     "eslint": "^7.16.0",
