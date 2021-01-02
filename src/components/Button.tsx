@@ -8,12 +8,14 @@ interface Props {
   onClick?: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void
   className?: string
   circle?: boolean
+  style?: React.CSSProperties
 }
 
 const Button: React.FC<Props> = (props) => {
-  const { bgColor, children, onClick, className, circle: isCircle } = props
+  const { bgColor, children, onClick, className, circle: isCircle, style } = props
   return (
     <button
+      style={style}
       onClick={onClick}
       className={classNames(
         bgColor,
@@ -32,7 +34,8 @@ Button.propTypes = {
     .isRequired,
   onClick: PropTypes.func,
   className: PropTypes.string,
-  circle: PropTypes.bool
+  circle: PropTypes.bool,
+  style: PropTypes.object
 }
 
 export default Button
