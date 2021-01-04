@@ -2,18 +2,27 @@ import React from 'react'
 import Button from 'components/Button'
 import headshot150 from 'assets/me-150w.png'
 import headshotStyled from 'assets/me-styled-300w.png'
+import headshotDesktop from 'assets/me-1280w.png'
+import Browser from 'components/Browser'
 
 const Hero: React.FC = () => {
   return (
     <header className="px-10 bg-blue-dark md:bg-white text-blue-light md:text-blue-dark text-center md:text-left md:grid grid-cols-12 py-16">
-      <picture className="col-span-4 md-2:col-span-5 order-1 md:flex items-end">
-        <source srcSet={headshotStyled} media="(min-width: 768px)" />
-        <img
-          className="mx-auto md:mr-0 mb-5 md:mb-0 rounded-full md:rounded-none bg-blue-light md:bg-white border-blue-light border-4 md:border-none"
-          src={headshot150}
-          alt="A headshot photo of John Dinh"
-        />
-      </picture>
+      <div className="hero-image relative 1 order-1 col-span-4 md-2:col-span-5 ">
+        <picture className="md:flex items-end">
+          <source srcSet={headshotDesktop} media="(min-width: 1024px)" />
+          <source srcSet={headshotStyled} media="(min-width: 768px)" />
+          <img
+            className="mx-auto md:mr-0 mb-5 md:mb-0 rounded-full md:rounded-none bg-blue-light md:bg-white border-blue-light border-4 md:border-none"
+            src={headshot150}
+            alt="A headshot photo of John Dinh"
+          />
+          <Browser
+            className="transform hidden lg:block scale-50 left-0 origin-top-left -bottom-20"
+            style={{ position: 'absolute' }}
+          />
+        </picture>
+      </div>
       <div className="col-span-8 md-2:col-span-7">
         <h1 className="text-5xl mb-1">Hi, I&apos;m John</h1>
 
