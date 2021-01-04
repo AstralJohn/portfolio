@@ -6,6 +6,8 @@ interface Props {
   width?: string
   height?: string
   title?: string
+  className?: string
+  style?: React.CSSProperties
 }
 
 const DotGrid: React.FC<Props> = (props) => {
@@ -13,9 +15,13 @@ const DotGrid: React.FC<Props> = (props) => {
   const width = props.width || '100%'
   const height = props.height || '100%'
   const title = props.title || 'dot grid'
+  const className = props.className || ''
+  const style = props.style || {}
 
   return (
     <svg
+      className={className}
+      style={style}
       xmlns="http://www.w3.org/2000/svg"
       width={width}
       height={height}
@@ -608,7 +614,9 @@ DotGrid.propTypes = {
   fill: PropTypes.string,
   width: PropTypes.string,
   height: PropTypes.string,
-  title: PropTypes.string
+  title: PropTypes.string,
+  className: PropTypes.string,
+  style: PropTypes.object
 }
 
 export default DotGrid

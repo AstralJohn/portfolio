@@ -4,6 +4,7 @@ import headshot150 from 'assets/me-150w.png'
 import headshotStyled from 'assets/me-styled-300w.png'
 import headshotDesktop from 'assets/me-1280w.png'
 import Browser from 'components/Browser'
+import DotGrid from 'components/Icons/dot-grid'
 
 const Hero: React.FC = () => {
   return (
@@ -17,10 +18,13 @@ const Hero: React.FC = () => {
             src={headshot150}
             alt="A headshot photo of John Dinh"
           />
-          <Browser
-            className="transform hidden lg:block scale-50 left-0 origin-top-left -bottom-20"
-            style={{ position: 'absolute' }}
-          />
+          <Browser className="transform hidden absolute lg:block scale-50 left-0 origin-top-left -bottom-20">
+            <DotGrid
+              style={{ zIndex: -1, top: "calc(50% - 1rem)", left: "50%" }}
+              className="absolute"
+              fill="#D0E2EE"
+            />
+          </Browser>
         </picture>
       </div>
       <div className="col-span-8 md-2:col-span-7">
