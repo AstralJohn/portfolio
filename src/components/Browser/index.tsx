@@ -5,12 +5,14 @@ interface Props {
   height?: string
   width?: string
   className?: string
+  style?: React.CSSProperties
 }
 
 const Browser: React.FC<Props> = (props) => {
-  const { height = 'h-72', width = 'w-84', className } = props
+  const { height = 'h-72', width = 'w-84', className, style } = props
   return (
     <div
+      style={style}
       className={`mt-5 mx-auto pt-8 bg-blue relative rounded-t-lg shadow-2xl ${height} ${width} ${className}`}
     >
       <div className="bg-white h-10 flex items-center rounded-t-lg absolute left-0 top-0 right-0">
@@ -27,7 +29,8 @@ const Browser: React.FC<Props> = (props) => {
 Browser.propTypes = {
   height: PropTypes.string,
   width: PropTypes.string,
-  className: PropTypes.string
+  className: PropTypes.string,
+  style: PropTypes.object
 }
 
 export default Browser
