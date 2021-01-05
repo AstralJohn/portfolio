@@ -1,11 +1,11 @@
 import React from 'react'
 import Hero from 'views/Hero'
-import NavButton from 'views/components/NavButton'
+import MobileNavbar from 'views/Nav/mobileNavbar'
 const App: React.FC = () => {
   return (
     <>
       <Hero />
-      <NavButton />
+      <MobileNavbar />
     </>
   )
 }

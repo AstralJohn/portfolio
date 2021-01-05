@@ -1,24 +1,19 @@
-import React, { useState } from 'react'
+import React from 'react'
 import PropTypes from 'prop-types'
 import Button from 'components/Button'
 
 interface Props {
+  isNavClosed: boolean
   onClick?: React.MouseEventHandler
 }
 
-const NavButton: React.FC<Props> = () => {
-  const [isClosed, setIsClosed] = useState<boolean>(true)
+const NavButton: React.FC<Props> = ({ isNavClosed, onClick }) => {
   const toggleClassName = 'opacity-0 scale-80'
-
-  const onClickHandler = () => {
-    setIsClosed(!isClosed)
-  }
-
   return (
     <Button
       className="fixed z-50 bottom-4 right-4 w-16 h-16 text-white block lg:hidden"
       bgColor="bg-blue-dark"
-      onClick={onClickHandler}
+      onClick={onClick}
       circle
     >
       <span className="sr-only">Open site navigation</span>
@@ -28,7 +23,7 @@ const NavButton: React.FC<Props> = () => {
         height="24"
         fill="none"
         className={`absolute top-1/2 left-1/2 -mt-3 -ml-3 transition duration-300 transform ${
-          !isClosed ? toggleClassName : ''
+          !isNavClosed ? toggleClassName : ''
         }`}
       >
         <path
@@ -44,7 +39,7 @@ const NavButton: React.FC<Props> = () => {
         height="24"
         fill="none"
         className={`absolute top-1/2 left-1/2 -mt-3 -ml-3 transition duration-300 transform ${
-          isClosed ? toggleClassName : ''
+          isNavClosed ? toggleClassName : ''
         }`}
       >
         <path
@@ -61,6 +56,7 @@ const NavButton: React.FC<Props> = () => {
 }
 
 NavButton.propTypes = {
+  isNavClosed: PropTypes.bool.isRequired,
   onClick: PropTypes.func
 }
 
