@@ -33,24 +33,36 @@ module.exports = {
       body: ['"Open Sans"', 'sans-serif']
     },
     screens: {
-      'xs': '525px',
-      'sm': '640px',
-      'md': '768px',
+      xs: '525px',
+      sm: '640px',
+      md: '768px',
       'md-2': '950px',
-      'lg': '1024px',
-      'xl': '1280px',
-      '2xl': '1536px'
+      lg: '1024px',
+      'lg-2': '1174px',
+      xl: '1280px',
+      'xl-2': '1466px',
+      '2xl': '1600px',
+      '4k': '1900px'
     },
     extend: {
       spacing: {
-        '72': '18rem',
-        '84': '22.5rem',
-        '96': '24rem'
+        72: '18rem',
+        84: '22.5rem',
+        96: '24rem'
+      },
+      height: {
+        'lg-2-hero': '50rem'
+      },
+      width: {
+        '120': '120%'
+      },
+      scale: {
+        '65': '.65'
       }
-    },
+    }
   },
   variants: {
-    extend: {},
+    extend: {}
   },
-  plugins: [],
+  plugins: []
 }
