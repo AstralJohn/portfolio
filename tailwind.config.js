@@ -29,6 +29,7 @@ module.exports = {
       }
     },
     fontFamily: {
+      display: ['"Noto Serif"', 'sans-serif'],
       headings: ['Montserrat', 'sans-serif'],
       body: ['"Open Sans"', 'sans-serif']
     },
