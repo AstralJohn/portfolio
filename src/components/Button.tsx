@@ -4,11 +4,11 @@ import classNames from 'classnames'
 
 interface Props {
   bgColor: string // tailwind className
-  bgHoverColor: string
+  bgHoverColor?: string
   children: string | JSX.Element | JSX.Element[]
   onClick?: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void
   className?: string
-  circle?: boolean
+  circle?: any
   style?: React.CSSProperties
 }
 
@@ -22,7 +22,7 @@ const Button: React.FC<Props> = (props) => {
         bgColor,
         className,
         isCircle ? 'rounded-full' : 'btn py-3 px-14',
-        `hover:${bgHoverColor} hover:shadow-md transition-colors duration-300`
+        bgHoverColor ? `hover:${bgHoverColor} hover:shadow-md transition-colors duration-300` : ''
       )}
     >
       {children}
@@ -32,12 +32,11 @@ const Button: React.FC<Props> = (props) => {
 
 Button.propTypes = {
   bgColor: PropTypes.string.isRequired,
-  bgHoverColor: PropTypes.string.isRequired,
-  children: PropTypes.oneOfType([PropTypes.string, PropTypes.element])
-    .isRequired,
+  bgHoverColor: PropTypes.string,
+  children: PropTypes.any.isRequired,
   onClick: PropTypes.func,
   className: PropTypes.string,
-  circle: PropTypes.bool,
+  circle: PropTypes.any,
   style: PropTypes.object
 }
 
