@@ -13,7 +13,7 @@ interface Props {
   ref?: React.Ref<HTMLButtonElement>
 }
 
-const Button: React.FC<Props> = React.forwardRef((props, ref) => {
+const Button = React.forwardRef((props: Props, ref: React.Ref<HTMLButtonElement>) => {
   const {
     bgColor,
     bgHoverColor,
