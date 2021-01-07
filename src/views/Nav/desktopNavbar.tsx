@@ -4,7 +4,7 @@ const DesktopNavbar: React.FC = () => {
   const linkStyles = 'font-headings font-medium pr-24 text-2xl'
   // TODO: update style on scroll down, hide on scroll up
   return (
-    <nav>
+    <nav className="hidden lg:block">
       <a
         href="#"
         className="font-display text-xl text-white bg-blue-dark px-5 py-7 mr-24 inline-block mb-12"
