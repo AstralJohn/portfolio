@@ -10,25 +10,39 @@ interface Props {
   className?: string
   circle?: any
   style?: React.CSSProperties
+  ref?: React.Ref<HTMLButtonElement>
 }
 
-const Button: React.FC<Props> = (props) => {
-  const { bgColor, bgHoverColor, children, onClick, className, circle: isCircle, style } = props
+const Button = React.forwardRef((props: Props, ref: React.Ref<HTMLButtonElement>) => {
+  const {
+    bgColor,
+    bgHoverColor,
+    children,
+    onClick,
+    className,
+    circle: isCircle,
+    style,
+  } = props
   return (
     <button
+      ref={ref}
       style={style}
       onClick={onClick}
       className={classNames(
         bgColor,
         className,
         isCircle ? 'rounded-full' : 'btn py-3 px-14',
-        bgHoverColor ? `hover:${bgHoverColor} hover:shadow-md transition-colors duration-300` : ''
+        bgHoverColor
+          ? `hover:${bgHoverColor} hover:shadow-md transition-colors duration-300`
+          : ''
       )}
     >
       {children}
     </button>
   )
-}
+})
+
+Button.displayName = 'Button'
 
 Button.propTypes = {
   bgColor: PropTypes.string.isRequired,
@@ -37,7 +51,8 @@ Button.propTypes = {
   onClick: PropTypes.func,
   className: PropTypes.string,
   circle: PropTypes.any,
-  style: PropTypes.object
+  style: PropTypes.object,
+  ref: PropTypes.any
 }
 
 export default Button

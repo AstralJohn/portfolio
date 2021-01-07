@@ -8,7 +8,7 @@ const MobileNavbar: React.FC = () => {
     setIsClosed(!isClosed)
   }
 
-  const linkStyles = 'font-headings font-medium block pb-24 text-2xl'
+  const linkStyles = 'font-headings font-medium block mb-24 text-2xl'
   return (
     <div className="lg:hidden">
       <nav
