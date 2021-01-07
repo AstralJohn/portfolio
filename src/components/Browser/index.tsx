@@ -9,6 +9,7 @@ interface Props {
   style?: React.CSSProperties
   children?: string | JSX.Element | JSX.Element[]
   overlay?: any
+  isHovering?: boolean
   onMouseEnter?: React.MouseEventHandler
   onMouseLeave?: React.MouseEventHandler
 }
@@ -22,24 +23,31 @@ const Browser: React.FC<Props> = (props) => {
     children,
     overlay,
     onMouseEnter,
-    onMouseLeave
+    onMouseLeave,
+    isHovering
   } = props
   return (
     <div
+      style={{ boxShadow: '0 0 30px #0000004F', ...style }}
       onMouseEnter={onMouseEnter}
       onMouseLeave={onMouseLeave}
       className={className}
-      style={style}
     >
       <div
-        style={{ boxShadow: '0 0 30px #0000004F' }}
         className={classNames(
-          'pt-8 relative rounded-t-lg shadow-2xl bg-blue',
+          'pt-8 relative rounded-t-lg shadow-2xl overflow-hidden transition-all duration-300',
           {
-            'bg-opacity-75 z-10': overlay
+            'bg-blue': !overlay,
+            'z-10': overlay
           },
+          `${
+            overlay && isHovering
+              ? 'bg-blue-dark bg-opacity-100'
+              : overlay && 'bg-blue bg-opacity-75'
+          }`,
           height,
-          width
+          width,
+          'bg-blue-dark'
         )}
       >
         <div className="bg-white h-10 flex items-center rounded-t-lg absolute left-0 top-0 right-0">
@@ -60,10 +68,11 @@ Browser.propTypes = {
   width: PropTypes.string,
   className: PropTypes.string,
   style: PropTypes.object,
-  children: PropTypes.oneOfType([PropTypes.string, PropTypes.element]),
+  children: PropTypes.any,
   overlay: PropTypes.any,
   onMouseEnter: PropTypes.func,
-  onMouseLeave: PropTypes.func
+  onMouseLeave: PropTypes.func,
+  isHovering: PropTypes.bool
 }
 
 export default Browser
