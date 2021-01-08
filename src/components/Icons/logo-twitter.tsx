@@ -8,6 +8,7 @@ interface Props {
   width?: string
   height?: string
   title?: string
+  className?: string
 }
 
 const LogoTwitter: React.FC<Props> = (props) => {
@@ -16,9 +17,11 @@ const LogoTwitter: React.FC<Props> = (props) => {
   const width = props.width || '100%'
   const height = props.height || '100%'
   const title = props.title || 'logo twitter'
+  const className = props.className || ''
 
   return (
     <svg
+      className={className}
       height={height}
       width={width}
       viewBox="0 0 64 64"
@@ -40,7 +43,8 @@ LogoTwitter.propTypes = {
   secondaryfill: PropTypes.string,
   width: PropTypes.string,
   height: PropTypes.string,
-  title: PropTypes.string
+  title: PropTypes.string,
+  className: PropTypes.string
 }
 
 export default LogoTwitter
