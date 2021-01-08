@@ -8,6 +8,7 @@ interface Props {
   width?: string
   height?: string
   title?: string
+  className?: string
 }
 
 const Letter: React.FC<Props> = (props) => {
@@ -17,9 +18,11 @@ const Letter: React.FC<Props> = (props) => {
   const width = props.width || '100%'
   const height = props.height || '100%'
   const title = props.title || 'letter'
+  const className = props.className || ''
 
   return (
     <svg
+      className={className}
       height={height}
       width={width}
       viewBox="0 0 64 64"
@@ -52,7 +55,8 @@ Letter.propTypes = {
   strokewidth: PropTypes.number,
   width: PropTypes.string,
   height: PropTypes.string,
-  title: PropTypes.string
+  title: PropTypes.string,
+  className: PropTypes.string,
 }
 
 export default Letter

@@ -17,7 +17,8 @@ module.exports = {
     extend: {
       colors: {
         white: {
-          DEFAULT: '#FFFFFF'
+          DEFAULT: '#FFFFFF',
+          tint: '#FAFAFA'
         },
         blue: {
           dark: '#002C3D',
@@ -25,7 +26,7 @@ module.exports = {
           light: '#ECEDEF'
         },
         orange: {
-          DEFAULT: '#FF7A49',
+          DEFAULT: '#FF7340',
           dark: '#B3502D'
         },
         red: {
