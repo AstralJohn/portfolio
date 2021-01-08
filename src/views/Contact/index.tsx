@@ -53,7 +53,7 @@ const Contact: React.FC = () => {
             href="https://google.com"
             target="_blank"
             className="h-16 w-16 p-3"
-            bgColor="bg-blue"
+            bgColor="bg-blue-dark"
             circle
           >
             <LetterSvg strokewidth={2} />
@@ -63,12 +63,12 @@ const Contact: React.FC = () => {
             target="_blank"
             link
             className="h-16 w-16 p-3"
-            bgColor="bg-blue"
+            bgColor="bg-blue-dark"
             circle
           >
             <TwitterSvg className="stroke-current stroke-2" fill="none" />
           </Button>
-          <Button className="h-16 w-16 p-3" bgColor="bg-blue" circle>
+          <Button className="h-16 w-16 p-3" bgColor="bg-blue-dark" circle>
             <LinkedinSvg
               className="stroke-current transform scale-90"
               fill="none"
