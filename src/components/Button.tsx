@@ -6,14 +6,16 @@ interface Props {
   bgColor: string // tailwind className
   bgHoverColor?: string
   children: string | JSX.Element | JSX.Element[]
-  onClick?: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void
+  onClick?: any
   className?: string
   circle?: any
   style?: React.CSSProperties
-  ref?: React.Ref<HTMLButtonElement>
+  link?: any
+  href?: string
+  target?: string
 }
 
-const Button = React.forwardRef((props: Props, ref: React.Ref<HTMLButtonElement>) => {
+const Button: React.FC<Props> = (props) => {
   const {
     bgColor,
     bgHoverColor,
@@ -22,10 +24,33 @@ const Button = React.forwardRef((props: Props, ref: React.Ref<HTMLButtonElement>
     className,
     circle: isCircle,
     style,
+    link,
+    target,
+    href
   } = props
+  if (link) {
+    return (
+      <a
+        style={style}
+        target={target}
+        rel="noreferrer"
+        href={href || '#'}
+        onClick={onClick}
+        className={classNames(
+          bgColor,
+          className,
+          isCircle ? 'rounded-full' : 'btn py-3 px-14',
+          bgHoverColor
+            ? `hover:${bgHoverColor} hover:shadow-md transition-colors duration-300`
+            : ''
+        )}
+      >
+        {children}
+      </a>
+    )
+  }
   return (
     <button
-      ref={ref}
       style={style}
       onClick={onClick}
       className={classNames(
@@ -40,7 +65,7 @@ const Button = React.forwardRef((props: Props, ref: React.Ref<HTMLButtonElement>
       {children}
     </button>
   )
-})
+}
 
 Button.displayName = 'Button'
 
@@ -52,7 +77,9 @@ Button.propTypes = {
   className: PropTypes.string,
   circle: PropTypes.any,
   style: PropTypes.object,
-  ref: PropTypes.any
+  link: PropTypes.any,
+  href: PropTypes.string,
+  target: PropTypes.string
 }
 
 export default Button
