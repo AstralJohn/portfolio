@@ -1,17 +1,46 @@
-import React from 'react'
+import React, { useState } from 'react'
 import LetterSvg from 'components/Icons/letter'
 import TwitterSvg from 'components/Icons/logo-twitter'
 import LinkedinSvg from 'components/Icons/logo-linkedin'
 import Button from 'components/Button'
 
+interface FormData {
+  fullName: string
+  email: string
+  subject: string
+  message: string
+}
+
 const Contact: React.FC = () => {
-  const handleKeyDown: React.KeyboardEventHandler = (e) => {
-    const target = e.target as HTMLTextAreaElement
-    target.style.height = 'inherit'
-    target.style.height = `${target.scrollHeight}px`
+  const initialFormData = {
+    fullName: '',
+    email: '',
+    subject: '',
+    message: ''
   }
+
+  const [formData, setFormData] = useState<FormData>(initialFormData)
+
+  const handleOnChange: React.ChangeEventHandler = (e) => {
+    // Auto resize textarea
+    if (e.target.id === 'message') {
+      const target = e.target as HTMLTextAreaElement
+      target.style.height = 'inherit'
+      target.style.height = `${target.scrollHeight}px`
+    }
+
+    const text = (e.target as HTMLInputElement).value
+
+    setFormData({
+      ...formData,
+      [e.target.id]: text
+    })
+  }
+
   const handleOnSubmit: React.FormEventHandler = (e) => {
+    // const regex = /[^a-zA-Z0-9.-]/g
     e.preventDefault()
+    console.log(formData)
   }
 
   return (
@@ -50,7 +79,10 @@ const Contact: React.FC = () => {
           <label className="text-left">
             Full Name
             <input
+              value={formData.fullName}
+              id="fullName"
               className="block w-full mb-6 placeholder-orange-dark placeholder-opacity-50 bg-transparent border-b-2 border-white"
+              onChange={handleOnChange}
               placeholder="John Doe"
               type="text"
             />
@@ -58,6 +90,9 @@ const Contact: React.FC = () => {
           <label className="text-left">
             Email
             <input
+              value={formData.email}
+              onChange={handleOnChange}
+              id="email"
               className="block w-full mb-6 placeholder-orange-dark placeholder-opacity-50 bg-transparent border-b-2 border-white"
               placeholder="your@email.com"
               type="email"
@@ -66,18 +101,23 @@ const Contact: React.FC = () => {
           <label className="text-left">
             Subject
             <input
+              value={formData.subject}
+              onChange={handleOnChange}
+              id="subject"
               className="block w-full mb-6 placeholder-orange-dark placeholder-opacity-50 bg-transparent border-b-2 border-white"
               placeholder="John Doe"
               type="text"
             />
           </label>
           <label className="text-left">
-            Subject
+            Message
             <textarea
-              className="bg-transparent block mb-12 border-b-2 placeholder-orange-dark placeholder-opacity-50 border-white w-full h-auto"
+              id="message"
+              value={formData.message}
+              className="resize-none bg-transparent block mb-12 border-b-2 placeholder-orange-dark placeholder-opacity-50 border-white w-full h-auto"
               placeholder="Your message"
               rows={1}
-              onKeyDown={handleKeyDown}
+              onChange={handleOnChange}
             ></textarea>
           </label>
           <Button
