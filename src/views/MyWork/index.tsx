@@ -10,11 +10,11 @@ const MyWork: React.FC = () => {
       <p className="px-5 mb-14">
         Here are a few projects I have had the pleasure to worked on recently.
         Want more details on my projects?{' '}
-        <div>
+        <span className="block">
           <a className="font-bold text-blue" href="mailto:john@johndinh.dev">
             Email me.
           </a>
-        </div>
+        </span>
       </p>
 
       <div>
