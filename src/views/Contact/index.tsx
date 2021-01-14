@@ -29,11 +29,12 @@ const Contact: React.FC = () => {
       target.style.height = `${target.scrollHeight}px`
     }
 
-    const text = (e.target as HTMLInputElement).value
+    const target = e.target as HTMLInputElement
+    const text = target.value
 
     setFormData({
       ...formData,
-      [e.target.id]: text
+      [target.name]: text
     })
   }
 
@@ -57,79 +58,98 @@ const Contact: React.FC = () => {
                   the following
                 </p>
               </div>
-              <Button
-                link
-                href="https://google.com"
-                target="_blank"
-                className="h-16 w-16 p-3 block"
-                bgColor="bg-blue-dark lg:bg-transparent"
-                circle
-              >
-                <LetterSvg strokewidth={2} />
-              </Button>
-              <Button
-                href="https://twitter.com/johndinhdev"
-                target="_blank"
-                link
-                className="h-16 w-16 p-3 block"
-                bgColor="bg-blue-dark lg:bg-transparent"
-                circle
-              >
-                <TwitterSvg className="stroke-current stroke-2" fill="none" />
-              </Button>
-              <Button
-                className="h-16 w-16 p-3"
-                bgColor="bg-blue-dark lg:bg-transparent"
-                circle
-              >
-                <LinkedinSvg
-                  className="stroke-current transform scale-90"
-                  fill="none"
-                />
-              </Button>
+              <span className="flex items-center">
+                <Button
+                  link
+                  href="mailto:john@johndinh.dev"
+                  target="_blank"
+                  className="h-16 w-16 p-3 block"
+                  bgColor="bg-blue-dark lg:bg-transparent"
+                  circle
+                >
+                  <LetterSvg strokewidth={2} />
+                </Button>
+                <p className="hidden lg:inline-block text-white">
+                  john@johndinh.dev
+                </p>
+              </span>
+              <span className="flex items-center">
+                <Button
+                  href="https://twitter.com/johndinhdev"
+                  target="_blank"
+                  link
+                  className="h-16 w-16 p-3 block"
+                  bgColor="bg-blue-dark lg:bg-transparent"
+                  circle
+                >
+                  <TwitterSvg className="stroke-current stroke-2" fill="none" />
+                </Button>
+                <p className="hidden lg:inline-block text-white">
+                  @johndinhdev
+                </p>
+              </span>
+              <span className="flex items-center">
+                <Button
+                  className="h-16 w-16 p-3"
+                  bgColor="bg-blue-dark lg:bg-transparent"
+                  circle
+                >
+                  <LinkedinSvg
+                    className="stroke-current transform scale-90"
+                    fill="none"
+                  />
+                </Button>
+                <p className="hidden lg:inline-block text-white">
+                  @johndinhdev
+                </p>
+              </span>
             </div>
           </div>
           <form
             onSubmit={handleOnSubmit}
             className="px-12 lg:inline-block lg:bg-white-tint"
           >
-            <label className="text-left">
+            <label className="text-left lg:text-blue">
               Full Name
               <input
                 value={formData.fullName}
                 id="fullName"
+                name="fullName"
                 className="block w-full mb-6 placeholder-orange-dark placeholder-opacity-50 bg-transparent border-b-2 border-white lg:border-blue lg:placeholder-blue-dark lg:placeholder-opacity-50"
                 onChange={handleOnChange}
                 placeholder="John Doe"
                 type="text"
               />
             </label>
-            <label className="text-left">
+            <label className="text-left lg:text-blue">
               Email
               <input
                 value={formData.email}
                 onChange={handleOnChange}
                 id="email"
+                name="email"
                 className="block w-full mb-6 placeholder-orange-dark placeholder-opacity-50 bg-transparent border-b-2 border-white lg:border-blue lg:placeholder-blue-dark lg:placeholder-opacity-50"
                 placeholder="your@email.com"
                 type="email"
               />
             </label>
-            <label className="text-left">
+            <label className="text-left lg:text-blue">
               Subject
               <input
                 value={formData.subject}
                 onChange={handleOnChange}
                 id="subject"
+                name="subject"
                 className="block w-full mb-6 placeholder-orange-dark placeholder-opacity-50 bg-transparent border-b-2 border-white lg:border-blue lg:placeholder-blue-dark lg:placeholder-opacity-50"
-                placeholder="John Doe"
+                placeholder="Subject"
                 type="text"
               />
             </label>
-            <label className="text-left">
+            <label className="text-left lg:text-blue">
               Message
               <textarea
                 id="message"
+                name="message"
                 value={formData.message}
                 className="resize-none bg-transparent block mb-12 border-b-2 placeholder-orange-dark placeholder-opacity-50 border-white lg:border-blue lg:placeholder-blue-dark lg:placeholder-opacity-50 w-full h-auto"
                 placeholder="Your message"
