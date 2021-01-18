@@ -8,7 +8,7 @@ const MyWork: React.FC = () => {
     <section className="text-center container mx-auto">
       <h1 className="text-6xl mb-3">My Work</h1>
       <p className="px-5 mb-14">
-        Here are a few projects I have had the pleasure to worked on recently.
+        Here are a few projects I have worked on recently.
         Want more details on my projects?{' '}
         <span className="block">
           <a className="font-bold text-blue" href="mailto:john@johndinh.dev">
