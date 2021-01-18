@@ -23,7 +23,9 @@ module.exports = {
         blue: {
           dark: '#002C3D',
           DEFAULT: '#029CC2',
-          light: '#ECEDEF'
+          light: '#ECEDEF',
+          circleLight: '#03C5F5',
+          circleDark: '#0E7CC6CF'
         },
         orange: {
           DEFAULT: '#FF7340',
@@ -50,13 +52,11 @@ module.exports = {
       spacing: {
         72: '18rem',
         84: '22.5rem',
-        96: '24rem'
+        96: '24rem',
+        120: '120%'
       },
       height: {
         'lg-2-hero': '50rem'
-      },
-      width: {
-        120: '120%'
       },
       scale: {
         65: '.65'
