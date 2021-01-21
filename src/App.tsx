@@ -4,6 +4,8 @@ import MobileNavbar from 'views/Nav/mobileNavbar'
 import DesktopNavbar from 'views/Nav/desktopNavbar'
 import MyWork from 'views/MyWork'
 import Contact from 'views/Contact'
+import Footer from 'views/Footer'
+
 const App: React.FC = () => {
   return (
     <>
@@ -12,6 +14,7 @@ const App: React.FC = () => {
       <Hero />
       <MyWork />
       <Contact />
+      <Footer />
     </>
   )
 }
