@@ -23,7 +23,7 @@ const DesktopNavbar: React.FC = () => {
         >
           John Dinh
         </Link>
-        <span className="right-0 absolute top-1/2 transform -translate-y-1/2">
+        <span id="right-links" className="right-0 absolute top-1/2 transform -translate-y-1/2">
           <Link
             to="root"
             onClick={() => scroll.scrollToTop()}
