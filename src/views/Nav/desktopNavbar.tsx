@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useRef } from 'react'
-import { Link, animateScroll as scroll } from 'react-scroll'
+import { Link } from 'react-scroll'
 
 const DesktopNavbar: React.FC = () => {
   const linkStyles =
@@ -49,22 +49,20 @@ const DesktopNavbar: React.FC = () => {
   return (
     <nav
       ref={navRef}
-      className={'hidden mb-4 lg:block z-50 transition-all top-0' + ' ' + navStyles.nav}
+      className={
+        'hidden mb-4 lg:block z-50 transition-all top-0' + ' ' + navStyles.nav
+      }
     >
       <div className="2xl:px-32 px-10 4k:px-60 flex justify-between">
         <Link
-          onClick={() => scroll.scrollToTop()}
           to="root"
+          smooth={true}
           className="cursor-pointer font-display text-xl text-white bg-blue-dark px-5 lg:py-4 2xl:py-7 mr-24 inline-block"
         >
           John Dinh
         </Link>
         <span className="self-center">
-          <Link
-            to="root"
-            onClick={() => scroll.scrollToTop()}
-            className={linkStyles}
-          >
+          <Link to="root" smooth={true} className={linkStyles}>
             HOME
           </Link>
           <Link to="my-work" smooth={true} className={linkStyles}>
