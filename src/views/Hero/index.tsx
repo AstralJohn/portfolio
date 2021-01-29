@@ -8,7 +8,7 @@ import DotGrid from 'components/Icons/dot-grid'
 
 const Hero: React.FC = () => {
   return (
-    <header className="md:mt-10 2xl:pl-32 px-10 4k:pl-60 lg:gap-24 bg-blue-dark md:bg-white text-blue-light md:text-blue-dark text-center md:text-left md:grid grid-cols-12 pb-16 lg-2:h-lg-2-hero 2xl:h-auto mb-10">
+    <header className="md:mt-10 mx-auto lg-2:mt-0 2xl:pl-32 px-10 4k:pl-60 lg:gap-24 bg-blue-dark md:bg-white text-blue-light md:text-blue-dark text-center md:text-left md:grid grid-cols-12 pb-16 lg-2:h-lg-2-hero 2xl:h-auto mb-10">
       <div className="hero-image md:flex relative 1 order-1 col-span-4 md-2:col-span-5 max-h-screen lg:col-span-7 4k:col-span-8">
         <picture className="z-0 md:flex items-end md:relative bottom-0 right-0">
           <source srcSet={headshotDesktop} media="(min-width: 1024px)" />

@@ -46,7 +46,7 @@ const Contact: React.FC = () => {
   }
 
   return (
-    <section className="bg-orange lg: lg:bg-white text-white">
+    <section id="contact" className="bg-orange lg: lg:bg-white text-white">
       <div className="container mx-auto max-w-6xl">
         <h1 className="text-6xl py-6 text-center lg:text-blue-dark lg:mb-10">
           Contact

@@ -9,7 +9,7 @@ import EditBrightnessSvg from 'components/Icons/edit-brightness'
 
 const MyWork: React.FC = () => {
   return (
-    <section className="text-center container mx-auto">
+    <section id="my-work" className="text-center container mx-auto">
       <h1 className="text-6xl mb-3">My Work</h1>
       <p className="px-5 mb-14">
         Here are a few projects I have worked on recently. Want more details on
