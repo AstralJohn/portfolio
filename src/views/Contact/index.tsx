@@ -23,6 +23,8 @@ const Contact: React.FC = () => {
   const [formData, setFormData] = useState<FormData>(initialFormData)
 
   const handleOnChange: React.ChangeEventHandler = (e) => {
+    const regex = /[^a-zA-Z0-9.-]/g
+
     // Auto resize textarea
     if (e.target.id === 'message') {
       const target = e.target as HTMLTextAreaElement
@@ -35,7 +37,7 @@ const Contact: React.FC = () => {
 
     setFormData({
       ...formData,
-      [target.name]: text
+      [target.name]: text.replaceAll(regex, '')
     })
   }
 
@@ -118,6 +120,7 @@ const Contact: React.FC = () => {
                 <label className="text-left lg:text-blue 2xl:w-2/5">
                   Full Name
                   <input
+                    required
                     value={formData.fullName}
                     id="fullName"
                     name="fullName"
@@ -130,6 +133,7 @@ const Contact: React.FC = () => {
                 <label className="text-left lg:text-blue 2xl:w-2/5">
                   Email
                   <input
+                    required
                     value={formData.email}
                     onChange={handleOnChange}
                     id="email"
@@ -155,6 +159,7 @@ const Contact: React.FC = () => {
               <label className="text-left lg:text-blue">
                 Message
                 <textarea
+                  required
                   id="message"
                   name="message"
                   value={formData.message}
