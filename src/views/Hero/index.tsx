@@ -5,6 +5,7 @@ import headshotStyled from 'assets/me-styled-300w.png'
 import headshotDesktop from 'assets/me-1280w.png'
 import Browser from 'components/Browser'
 import DotGrid from 'components/Icons/dot-grid'
+import { scroller } from 'react-scroll'
 
 const Hero: React.FC = () => {
   return (
@@ -67,6 +68,13 @@ const Hero: React.FC = () => {
             className="mb-8 xs:mb-0 block md:inline-block mx-auto xs:mx-0 md:mr-5 lg:mr-16 lg:mb-8"
             bgColor="bg-blue"
             bgHoverColor="bg-blue-dark"
+            onClick={() => {
+              scroller.scrollTo('my-work', {
+                duration: 1500,
+                delay: 100,
+                smooth: true
+              })
+            }}
           >
             View Work
           </Button>
@@ -74,6 +82,13 @@ const Hero: React.FC = () => {
             style={{ transform: 'translateY(-1px)' }}
             bgColor="bg-orange"
             bgHoverColor="bg-orange-dark"
+            onClick={() => {
+              scroller.scrollTo('contact', {
+                duration: 1500,
+                delay: 100,
+                smooth: true
+              })
+            }}
           >
             Contact
           </Button>
