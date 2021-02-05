@@ -50,7 +50,7 @@ const DesktopNavbar: React.FC = () => {
     <nav
       ref={navRef}
       className={
-        'hidden mb-4 lg:block z-50 transition-all top-0' + ' ' + navStyles.nav
+        'hidden mb-4 lg:block z-50 transition-all top-0 duration-500' + ' ' + navStyles.nav
       }
     >
       <div className="2xl:px-32 px-10 4k:px-60 flex justify-between">
