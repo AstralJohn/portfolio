@@ -16,4 +16,10 @@
   #root {
     overflow: hidden;
   }
+
+  @media (min-width: 2400px) {
+    #right-links {
+      right: 18rem;
+    }
+  }
 }
