@@ -95,6 +95,9 @@ const Contact: React.FC = () => {
               </span>
               <span className="flex items-center">
                 <Button
+                  href="https://www.linkedin.com/in/johndinhdev"
+                  target="_blank"
+                  link
                   className="h-16 w-16 p-3"
                   bgColor="bg-blue-dark lg:bg-transparent lg:pl-0"
                   circle
