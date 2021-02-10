@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import NavButton from './navButton'
+import { Link } from 'react-scroll'
 
 const MobileNavbar: React.FC = () => {
   const [isClosed, setIsClosed] = useState<boolean>(true)
@@ -8,7 +9,8 @@ const MobileNavbar: React.FC = () => {
     setIsClosed(!isClosed)
   }
 
-  const linkStyles = 'font-headings font-medium block mb-24 text-2xl'
+  const linkStyles =
+    'cursor-pointer font-headings font-medium block mb-24 text-2xl'
   return (
     <div className="lg:hidden">
       <nav
@@ -16,21 +18,38 @@ const MobileNavbar: React.FC = () => {
           isClosed ? '-right-full' : 'right-0'
         }`}
       >
-        <a
-          href="#"
-          className="font-display text-xl text-white bg-blue-dark py-7 block mb-12"
+        <Link
+          to="root"
+          smooth={true}
+          onClick={onClickHandler}
+          className="cursor-pointer font-display text-xl text-white bg-blue-dark py-7 block mb-12"
         >
           John Dinh
-        </a>
-        <a href="#" className={linkStyles}>
+        </Link>
+        <Link
+          to="root"
+          smooth={true}
+          onClick={onClickHandler}
+          className={linkStyles}
+        >
           HOME
-        </a>
-        <a href="#" className={linkStyles}>
+        </Link>
+        <Link
+          to="my-work"
+          smooth={true}
+          onClick={onClickHandler}
+          className={linkStyles}
+        >
           MY WORK
-        </a>
-        <a href="#" className={linkStyles}>
+        </Link>
+        <Link
+          to="contact"
+          smooth={true}
+          onClick={onClickHandler}
+          className={linkStyles}
+        >
           CONTACT
-        </a>
+        </Link>
       </nav>
       <NavButton onClick={onClickHandler} isNavClosed={isClosed} />
     </div>
