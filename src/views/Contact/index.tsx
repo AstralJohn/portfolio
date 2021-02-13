@@ -71,7 +71,6 @@ const Contact: React.FC = () => {
         loading: false,
         done: true
       })
-      console.log('i ran')
     } catch (err) {
       console.log(err)
       return setContactResponse({
@@ -83,6 +82,7 @@ const Contact: React.FC = () => {
 
   return (
     <section id="contact" className="bg-orange lg: lg:bg-white text-white">
+      {console.log(contactResponse)}
       <div className="container mx-auto max-w-6xl">
         <h1 className="text-6xl py-6 text-center lg:text-blue-dark lg:mb-10">
           Contact
