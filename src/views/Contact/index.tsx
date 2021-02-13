@@ -5,11 +5,20 @@ import LinkedinSvg from 'components/Icons/logo-linkedin'
 import Button from 'components/Button'
 import CircleGraphic from './circleGraphic'
 
-interface FormData {
+import api from 'api'
+
+export interface FormData {
   fullName: string
   email: string
   subject: string
   message: string
+}
+
+interface ContactResponse {
+  message?: string
+  statusCode?: number
+  loading: boolean
+  done: boolean | null
 }
 
 const Contact: React.FC = () => {
@@ -20,10 +29,20 @@ const Contact: React.FC = () => {
     message: ''
   }
 
+  const initialContactResponse = {
+    message: undefined,
+    statusCode: undefined,
+    loading: false,
+    done: null
+  }
+
   const [formData, setFormData] = useState<FormData>(initialFormData)
+  const [contactResponse, setContactResponse] = useState<ContactResponse>(
+    initialContactResponse
+  )
 
   const handleOnChange: React.ChangeEventHandler = (e) => {
-    const regex = /[^a-zA-Z0-9.-]/g
+    const regex = /[\\<>*=]/g
 
     // Auto resize textarea
     if (e.target.id === 'message') {
@@ -41,10 +60,17 @@ const Contact: React.FC = () => {
     })
   }
 
-  const handleOnSubmit: React.FormEventHandler = (e) => {
-    // const regex = /[^a-zA-Z0-9.-]/g
+  const handleOnSubmit: React.FormEventHandler = async (e) => {
     e.preventDefault()
-    console.log(formData)
+    setContactResponse({ ...contactResponse, loading: true, done: false })
+    const { data: messageResponse, status } = await api.sendMessage(formData)
+
+    setContactResponse({
+      message: messageResponse,
+      statusCode: status,
+      loading: false,
+      done: true
+    })
   }
 
   return (
@@ -66,7 +92,7 @@ const Contact: React.FC = () => {
               <span className="flex items-center">
                 <Button
                   link
-                  href="mailto:john@johndinh.dev"
+                  href="mailto:john@johndinh.tech"
                   target="_blank"
                   className="h-16 w-16 p-3 block lg:pl-0"
                   bgColor="bg-blue-dark lg:bg-transparent"
@@ -75,7 +101,7 @@ const Contact: React.FC = () => {
                   <LetterSvg strokewidth={2} />
                 </Button>
                 <p className="hidden lg:inline-block text-white">
-                  john@johndinh.dev
+                  john@johndinh.tech
                 </p>
               </span>
               <span className="flex items-center">
@@ -116,8 +142,33 @@ const Contact: React.FC = () => {
           </div>
           <form
             onSubmit={handleOnSubmit}
-            className="px-12 lg:inline-block lg:bg-white-tint lg:w-120 lg:px-32 lg:py-20"
+            className="relative px-12 lg:inline-block lg:bg-white-tint lg:w-120 lg:px-32 lg:py-20"
           >
+            <div
+              className={
+                contactResponse.done !== null
+                  ? 'absolute inset-0 lg:bg-white-tint'
+                  : 'hidden'
+              }
+            >
+              <div className="absolute flex items-center flex-col top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+                <div
+                  className={`circle-loader text-center ${
+                    contactResponse.done ? 'load-complete' : ''
+                  }`}
+                >
+                  <div
+                    className={`checkmark draw ${
+                      contactResponse.done ? 'block' : ''
+                    }`}
+                  ></div>
+                </div>
+                <h1 className="text-black text-4xl mt-20">
+                  {contactResponse.message || "Sending..."}
+                </h1>
+              </div>
+            </div>
+
             <div>
               <div className="lg:flex lg:gap-4 lg:justify-between">
                 <label className="text-left lg:text-blue 2xl:w-2/5">
