@@ -63,14 +63,21 @@ const Contact: React.FC = () => {
   const handleOnSubmit: React.FormEventHandler = async (e) => {
     e.preventDefault()
     setContactResponse({ ...contactResponse, loading: true, done: false })
-    const { data: messageResponse, status } = await api.sendMessage(formData)
-
-    setContactResponse({
-      message: messageResponse,
-      statusCode: status,
-      loading: false,
-      done: true
-    })
+    try {
+      const { data: messageResponse, status } = await api.sendMessage(formData)
+      setContactResponse({
+        message: messageResponse,
+        statusCode: status,
+        loading: false,
+        done: true
+      })
+    } catch (err) {
+      console.log(err)
+      return setContactResponse({
+        ...contactResponse,
+        message: 'Server is down'
+      })
+    }
   }
 
   return (
@@ -164,7 +171,7 @@ const Contact: React.FC = () => {
                   ></div>
                 </div>
                 <h1 className="text-black text-4xl mt-20">
-                  {contactResponse.message || "Sending..."}
+                  {contactResponse.message || 'Sending...'}
                 </h1>
               </div>
             </div>
