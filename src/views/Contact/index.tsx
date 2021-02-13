@@ -156,7 +156,7 @@ const Contact: React.FC = () => {
             <div
               className={
                 contactResponse.done !== null
-                  ? 'absolute inset-0 lg:bg-white-tint'
+                  ? 'absolute inset-0 bg-orange lg:bg-white-tint'
                   : 'hidden'
               }
             >
@@ -172,7 +172,7 @@ const Contact: React.FC = () => {
                     }`}
                   ></div>
                 </div>
-                <h1 className="text-black text-4xl mt-20">
+                <h1 className="text-center text-black text-4xl mt-20">
                   {contactResponse.message || 'Sending...'}
                 </h1>
               </div>
