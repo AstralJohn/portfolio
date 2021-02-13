@@ -10,10 +10,12 @@ interface PictureData {
 
 interface Data {
   pictureData?: PictureData[]
+  className?: string
   title: string
   desc: string
   src: string
   alt: string
+  href: string
 }
 
 interface Props {
@@ -21,7 +23,15 @@ interface Props {
 }
 
 const Project: React.FC<Props> = (props) => {
-  const { pictureData = [], title, desc, src, alt } = props.data
+  const {
+    pictureData = [],
+    title,
+    desc,
+    src,
+    alt,
+    href,
+    className: classname
+  } = props.data
   const [isHovering, setIsHovering] = useState<boolean>(false)
 
   const onMouseEnterHandler = () => {
@@ -53,7 +63,7 @@ const Project: React.FC<Props> = (props) => {
       <h1
         className={`pointer-events-none select-none text-white text-5xl font-medium z-10 absolute left-1/2 top-28 transition-opacity duration-500 transform -translate-x-1/2 ${
           isHovering ? 'opacity-0' : 'opacity-100'
-        }`}
+        } ${classname}`}
       >
         {title}
       </h1>
@@ -63,7 +73,7 @@ const Project: React.FC<Props> = (props) => {
         }`}
       >
         <p className="text-lg mb-2">{desc}</p>
-        <Button className="w-52" bgColor="bg-orange">
+        <Button link href={href} target="_blank" className="w-52 block" bgColor="bg-orange">
           Visit Site
         </Button>
       </div>
@@ -74,10 +84,12 @@ const Project: React.FC<Props> = (props) => {
 Project.propTypes = {
   data: PropTypes.shape({
     pictureData: PropTypes.any,
+    className: PropTypes.any,
     title: PropTypes.string.isRequired,
     desc: PropTypes.string.isRequired,
     src: PropTypes.string.isRequired,
-    alt: PropTypes.string.isRequired
+    alt: PropTypes.string.isRequired,
+    href: PropTypes.string.isRequired
   }).isRequired
 }
 
