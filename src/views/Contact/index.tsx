@@ -71,6 +71,7 @@ const Contact: React.FC = () => {
         loading: false,
         done: true
       })
+      console.log('i ran')
     } catch (err) {
       console.log(err)
       return setContactResponse({
