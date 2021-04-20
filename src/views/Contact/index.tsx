@@ -101,7 +101,7 @@ const Contact: React.FC = () => {
               <span className="flex items-center">
                 <Button
                   link
-                  href="mailto:john@johndinh.tech"
+                  href="mailto:john@johndinh.dev"
                   target="_blank"
                   className="h-16 w-16 p-3 block lg:pl-0"
                   bgColor="bg-blue-dark lg:bg-transparent"
@@ -110,7 +110,7 @@ const Contact: React.FC = () => {
                   <LetterSvg strokewidth={2} />
                 </Button>
                 <p className="hidden lg:inline-block text-white">
-                  john@johndinh.tech
+                  john@johndinh.dev
                 </p>
               </span>
               <span className="flex items-center">
