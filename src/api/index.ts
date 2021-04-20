@@ -2,7 +2,7 @@ import axios from 'axios'
 import { FormData } from 'views/Contact'
 
 const api = axios.create({
-  baseURL: 'https://johndinh.tech:6969/api/portfolio'
+  baseURL: 'https://johndinh.tech/api/portfolio'
 })
 
 class API {
