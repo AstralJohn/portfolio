@@ -56,7 +56,7 @@ const Hero: React.FC = () => {
         </h2>
 
         <p className="xl:pl-2 leading-8 mb-14 xl:text-xl">
-          I work on web projects from simple static websites to complex web applications. My speciality is JavaScript/TypeScript with React and GraphQL. Other than web development, I also find interest in UI/UX designing and tinkering with Linux machines to optimize and automate my daily workflow.
+          I work on web projects from simple static websites to complex web applications. My speciality is JavaScript/TypeScript with React and GraphQL. Other than web development, I also find interest in UI/UX designing and tinkering with Linux machines to optimize and automate daily workflow.
         </p>
 
         <div className="justify-around block text-white xs:flex md:block lg:w-120">
