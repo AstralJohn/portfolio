@@ -113,7 +113,7 @@ const MyWork: React.FC = () => {
         </a>
       </p>
 
-      <img className="text-center mt-3 mb-3" src={rekara} alt="latest project" />
+      <img className="text-center mt-3 mb-14 mx-auto" src={rekara} alt="latest project" />
 
       <div className="relative">
         <div className="h-16 w-16 hidden lg:block lg-2:hidden xl:block lg:absolute lg:left-10 xl:left-0 xl-1:left-4 xl-1:scale-125 lg:-top-20 transform rotate-12">
