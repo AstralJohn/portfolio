@@ -94,7 +94,7 @@ const MyWork: React.FC = () => {
         </span>
       </p>
 
-      <h1 className="text-6xl mb-3 mt-3">What I'm currently working on</h1>
+      <h1 className="text-6xl mb-3 mt-3">What I am currently working on</h1>
       <p className="px-5 mb-14">
         I have been designing and developing Re:Kara as of 2021. You can find
         the Figma design{' '}
