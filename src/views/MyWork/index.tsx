@@ -25,6 +25,8 @@ import GrainEffectSvg from 'components/Icons/grain-effect'
 import TextureSvg from 'components/Icons/texture'
 import EditBrightnessSvg from 'components/Icons/edit-brightness'
 
+import rekara from 'assets/Home.png'
+
 const projectsData = [
   {
     pictureData: [{ src: pocketnow960 }],
@@ -66,8 +68,7 @@ const projectsData = [
     desc: 'Chrome extension that conviently tracks anime episode progress',
     src: anitracker480,
     alt: 'Screenshot of aniTracker chrome extension',
-    href:
-      'https://chrome.google.com/webstore/detail/anitrack/nobmbldhlggcgmhkjeahdnjpcgoclhif?hl=en'
+    href: 'https://chrome.google.com/webstore/detail/anitrack/nobmbldhlggcgmhkjeahdnjpcgoclhif?hl=en'
   },
   {
     pictureData: [{ src: nextbuy960 }],
@@ -92,6 +93,27 @@ const MyWork: React.FC = () => {
           </a>
         </span>
       </p>
+
+      <h1 className="text-6xl mb-3 mt-3">What I'm currently working on</h1>
+      <p className="px-5 mb-14">
+        I have been designing and developing Re:Kara as of 2021. You can find
+        the Figma design{' '}
+        <a
+          className="font-bold text-blue"
+          href="https://www.figma.com/file/aByM1YyOO1ncTAID9hxFWv/Untitled?node-id=0%3A1"
+        >
+          here
+        </a>{' '}
+        and the developed app{' '}
+        <a
+          className="font-bold text-blue"
+          href="https://re-kara-r82a2s1ss-johndinhdev.vercel.app"
+        >
+          here
+        </a>
+      </p>
+
+      <img className="text-center mt-3 mb-3" src={rekara} alt="latest project" />
 
       <div className="relative">
         <div className="h-16 w-16 hidden lg:block lg-2:hidden xl:block lg:absolute lg:left-10 xl:left-0 xl-1:left-4 xl-1:scale-125 lg:-top-20 transform rotate-12">
