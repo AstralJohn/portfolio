@@ -1,46 +1,62 @@
-# Getting Started with Create React App
+# John Dinh portfolio
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A recruiter-focused portfolio for senior full stack and frontend opportunities. Built with React, TypeScript, and Vite, with a responsive layout, accessible project dialogs, and a downloadable resume.
 
-## Available Scripts
+## Local development
 
-In the project directory, you can run:
+Use Node.js 22.12 or newer.
 
-### `yarn start`
+```sh
+npm ci
+npm run dev
+```
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+The local preview runs at `http://127.0.0.1:5186`.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+```sh
+npm run build
+npm run preview
+```
 
-### `yarn test`
+Production files are emitted to `build/`, preserving the original repository's output directory. Existing hosting can continue to use `npm run build` and serve `build/`. This checkout does not change DNS or hosting and does not publish automatically.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Verification
 
-### `yarn build`
+With the local preview running:
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+```sh
+npm run test:ui
+npm run review
+```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+The browser checks cover eight viewport widths, navigation, project dialogs and keyboard focus, resume downloads, email-copy feedback, reduced motion, and automated accessibility checks. Playwright Chromium must be available; on another machine install it with `npx playwright install chromium` if necessary. Screenshots and the report are written to the ignored `.qa/` directory. Automated accessibility checks complement manual visual and keyboard review.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+```sh
+npm run typecheck
+npx prettier --check src scripts index.html vite.config.ts package.json tsconfig.json
+```
 
-### `yarn eject`
+## Content and assets
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+- `src/App.tsx`: page sections, navigation, project dialogs, and contact controls.
+- `src/projects.ts`: project context, contributions, outcomes, and links.
+- `src/index.css`: design tokens, responsive layout, print styles, and reduced-motion support.
+- `public/resume/John-Dinh-Resume.pdf`: current resume download. Replace this file when the resume changes.
+- `public/images/john-dinh*.webp`: optimized versions of the supplied portrait.
+- `public/images/zen-*.webp`: actual desktop, mobile, and full-page captures of nailandheadspa.com made November 11, 2026.
+- `public/images/xda-archive.jpg`: archived publication image retained from the original portfolio; it is labeled as archival in the project details.
+- `public/fonts/`: locally hosted Manrope variable font and its SIL Open Font License.
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+The selected work is Omni at The Institutes, Zen Nail & Head Spa, and XDA-Developers. The previous experiment/project grid is retired. Pocketnow remains in the professional experience section.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+Omni is described through its purpose, responsibilities, and reported form-framework result. No employer source code or customer data is included. Contact uses email links and a copy control; there is no placeholder form or dependency on the old contact API.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+## Content accuracy
 
-## Learn More
+The project descriptions use John's supplied experience. The form-code reduction is approximate. Zen's end-to-end contribution was confirmed by John; its underlying implementation stack is not guessed. XDA's contributions refer to his 2020–2021 work, not the site's current design.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+The resume's credential level and exact PHP/Drupal versions remain unconfirmed. The degree is described without assuming a bachelor's credential. AWS is scoped to frontend integration. Employment dates and contact/profile links should be kept synchronized with the resume.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## Design and writing review
+
+The November 11 revision uses a role-first introduction, compact project entries, literal section headings, and restrained typography. [Design references, editorial criteria, and measured results](docs/portfolio-review.md) explain the decisions. Run `npm run review` to regenerate layout and copy measurements in `.qa/content-review.json`. These checks do not measure recruiting outcomes or certify accessibility.
