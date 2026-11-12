@@ -15,7 +15,10 @@ const verify = (condition, message) => {
 }
 
 try {
-  const context = await browser.newContext({ viewport: { width: 1440, height: 1000 } })
+  const context = await browser.newContext({
+    viewport: { width: 1440, height: 1000 },
+    colorScheme: 'light'
+  })
   // Exercise the copy control without changing the user's system clipboard.
   await context.addInitScript(() => {
     Object.defineProperty(navigator, 'clipboard', {
@@ -83,7 +86,7 @@ try {
           '.hero-description, .project-copy .project-summary, .project-outcome, .experience-description, .contact-section > p'
         )
       ].map((element) => parseFloat(getComputedStyle(element).fontSize)),
-      controlHeights: [...document.querySelectorAll('a, button')]
+      controlHeights: [...document.querySelectorAll('a, button, select')]
         .filter((element) => {
           const box = element.getBoundingClientRect()
           return box.width > 0 && box.height > 0 && element.className !== 'skip-link'
@@ -127,10 +130,15 @@ try {
       'Project must open at the beginning'
     )
     const images = await dialog.locator('img').evaluateAll((elements) =>
-      elements.map((image) => ({
-        actual: image.clientWidth / image.clientHeight,
-        natural: image.naturalWidth / image.naturalHeight
-      }))
+      Promise.all(
+        elements.map(async (image) => {
+          await image.decode()
+          return {
+            actual: image.clientWidth / image.clientHeight,
+            natural: image.naturalWidth / image.naturalHeight
+          }
+        })
+      )
     )
     verify(
       images.every((image) => Math.abs(image.actual - image.natural) < 0.02),
@@ -211,6 +219,55 @@ try {
     desktopAxe.violations.length === 0,
     `Desktop accessibility: ${JSON.stringify(desktopAxe.violations.map((x) => ({ id: x.id, nodes: x.nodes.map((n) => n.target) })))}`
   )
+  const theme = page.getByRole('combobox', { name: 'Theme', exact: true })
+  const background = () =>
+    page.locator('html').evaluate((element) => getComputedStyle(element).backgroundColor)
+  const light = await background()
+  verify((await theme.inputValue()) === 'system', 'The theme must default to System')
+  await page.emulateMedia({ colorScheme: 'dark' })
+  const dark = await background()
+  verify(dark !== light, 'System mode must follow a dark preference without reloading')
+  await theme.selectOption('dark')
+  await page.emulateMedia({ colorScheme: 'light' })
+  await page.reload({ waitUntil: 'networkidle' })
+  verify(
+    (await theme.inputValue()) === 'dark' && (await background()) === dark,
+    'Dark override must survive reload and take precedence over the system'
+  )
+  await theme.selectOption('light')
+  await page.emulateMedia({ colorScheme: 'dark' })
+  await page.reload({ waitUntil: 'networkidle' })
+  verify(
+    (await theme.inputValue()) === 'light' && (await background()) === light,
+    'Light override must survive reload and take precedence over the system'
+  )
+  await theme.selectOption('system')
+  verify(
+    (await background()) === dark &&
+      (await page.evaluate(() => localStorage.getItem('portfolio-theme'))) === null,
+    'System mode must clear the saved override and apply the current preference'
+  )
+  await page.screenshot({ path: '.qa/dark-desktop.png' })
+  const darkDesktopAxe = await new AxeBuilder({ page })
+    .withTags(['wcag2a', 'wcag2aa', 'wcag21aa'])
+    .analyze()
+  verify(darkDesktopAxe.violations.length === 0, 'Dark desktop accessibility must pass')
+  await page.getByRole('button', { name: 'Omni project details', exact: true }).click()
+  const darkDialogAxe = await new AxeBuilder({ page })
+    .withTags(['wcag2a', 'wcag2aa', 'wcag21aa'])
+    .analyze()
+  verify(darkDialogAxe.violations.length === 0, 'Dark project dialog accessibility must pass')
+  await page.keyboard.press('Escape')
+  await page.setViewportSize({ width: 320, height: 844 })
+  verify(await theme.isVisible(), 'The theme control must be visible at 320px')
+  await page.getByRole('button', { name: 'Open navigation' }).click()
+  const darkMobileAxe = await new AxeBuilder({ page })
+    .withTags(['wcag2a', 'wcag2aa', 'wcag21aa'])
+    .analyze()
+  verify(darkMobileAxe.violations.length === 0, 'Dark mobile navigation accessibility must pass')
+  await page.keyboard.press('Escape')
+  await page.emulateMedia({ colorScheme: 'light' })
+  verify((await background()) === light, 'System mode must resume following preference changes')
   await page.emulateMedia({ reducedMotion: 'reduce' })
   verify(
     (await page.locator('html').evaluate((element) => getComputedStyle(element).scrollBehavior)) ===
@@ -230,7 +287,7 @@ try {
     ) + '\n'
   )
   console.log(
-    `Passed ${checks} checks across 8 viewports, three project dialogs, mobile navigation, resume download, copy feedback, reduced motion, and automated accessibility scans.`
+    `Passed ${checks} checks across 8 viewports, theme selection, project dialogs, mobile navigation, resume download, copy feedback, reduced motion, and automated accessibility scans.`
   )
 } finally {
   await browser.close()

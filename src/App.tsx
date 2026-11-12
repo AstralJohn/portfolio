@@ -67,6 +67,34 @@ function Icon({
   )
 }
 
+function ThemePicker() {
+  return (
+    <label className="theme-picker">
+      Theme
+      <select
+        defaultValue={document.documentElement.dataset.theme ?? 'system'}
+        onChange={(event) => {
+          const theme = event.currentTarget.value
+          const root = document.documentElement
+          if (theme === 'system') delete root.dataset.theme
+          else root.dataset.theme = theme
+
+          try {
+            if (theme === 'system') localStorage.removeItem('portfolio-theme')
+            else localStorage.setItem('portfolio-theme', theme)
+          } catch {
+            // The selected theme still applies on this page.
+          }
+        }}
+      >
+        <option value="system">System</option>
+        <option value="light">Light</option>
+        <option value="dark">Dark</option>
+      </select>
+    </label>
+  )
+}
+
 function Header() {
   const [open, setOpen] = useState(false)
   useEffect(() => {
@@ -82,16 +110,19 @@ function Header() {
         <a className="wordmark" href="#top" onClick={() => setOpen(false)}>
           John Dinh
         </a>
-        <button
-          className="menu-toggle"
-          type="button"
-          aria-label={open ? 'Close navigation' : 'Open navigation'}
-          aria-expanded={open}
-          aria-controls="primary-navigation"
-          onClick={() => setOpen(!open)}
-        >
-          <Icon name={open ? 'close' : 'menu'} />
-        </button>
+        <div className="header-controls">
+          <ThemePicker />
+          <button
+            className="menu-toggle"
+            type="button"
+            aria-label={open ? 'Close navigation' : 'Open navigation'}
+            aria-expanded={open}
+            aria-controls="primary-navigation"
+            onClick={() => setOpen(!open)}
+          >
+            <Icon name={open ? 'close' : 'menu'} />
+          </button>
+        </div>
         <nav
           id="primary-navigation"
           className={`primary-nav ${open ? 'is-open' : ''}`}
